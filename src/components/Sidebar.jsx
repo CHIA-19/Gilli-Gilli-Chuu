@@ -1,12 +1,16 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { CHARACTERS, CATEGORIES } from '../constants';
 import { AgentSystem } from '../lib/AgentSystem';
 import { motion } from 'framer-motion';
 import { Lock, Sparkles, BookOpen } from 'lucide-react';
 
-export default function Sidebar({ activeId, onSelect }) {
+export default function Sidebar({ activeId }) {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
-    <div className="sidebar" style={{ width: '220px', display: 'flex', flexDirection: 'column', gap: '10px', overflowY: 'auto' }}>
+    <div className="sidebar" style={{ width: '280px', display: 'flex', flexDirection: 'column', gap: '10px', overflowY: 'auto' }}>
       <div className="sidebar-title" style={{ fontFamily: 'var(--font-display)', color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', letterSpacing: '3px', padding: '0 4px 6px', borderBottom: '1px solid rgba(255,255,255,0.1)', marginBottom: '10px' }}>
         LEARNING AGENTS
       </div>
@@ -19,7 +23,7 @@ export default function Sidebar({ activeId, onSelect }) {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {cat.ids.map(charId => {
               const char = CHARACTERS.find(c => c.id === charId);
-              const isActive = activeId === charId;
+              const isActive = location.pathname.includes(`/chat/${charId}`) || location.pathname.includes(`/game/${charId}`);
               const isUnlocked = AgentSystem.isCharacterUnlocked(char);
               
               return (
@@ -27,7 +31,7 @@ export default function Sidebar({ activeId, onSelect }) {
                   key={charId}
                   whileHover={{ x: 5, scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => onSelect(char)}
+                  onClick={() => navigate(`/chat/${charId}`)}
                   className={`char-card ${isActive ? 'active' : ''}`}
                   style={{
                     background: 'rgba(255,255,255,0.06)',
