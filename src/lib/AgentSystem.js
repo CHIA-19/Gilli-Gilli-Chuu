@@ -15,8 +15,8 @@ export const AgentSystem = {
   getHoursBalance: () => {
     const balance = localStorage.getItem('gili_hours');
     if (balance === null) {
-      localStorage.setItem('gili_hours', '10.0'); // Default 10 hours
-      return 10.0;
+      localStorage.setItem('gili_hours', '5.0'); // Default 5 hours
+      return 5.0;
     }
     return parseFloat(balance);
   },

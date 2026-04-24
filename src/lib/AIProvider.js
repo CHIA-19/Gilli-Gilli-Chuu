@@ -21,10 +21,12 @@ export const AIProvider = {
   },
 
   async fetchGemini(systemPrompt, userMessage, history, apiKey) {
-    const url = `https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
     
-    // Prepare history for Gemini (roles: user, model)
+    // Combine system prompt and history into contents
     const contents = [
+      { role: 'user', parts: [{ text: `SYSTEM INSTRUCTION: ${systemPrompt}` }] },
+      { role: 'model', parts: [{ text: "Understood. I will follow those instructions." }] },
       ...history.map(msg => ({
         role: msg.role === 'user' ? 'user' : 'model',
         parts: [{ text: msg.text }]
@@ -35,10 +37,7 @@ export const AIProvider = {
     const response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ 
-        system_instruction: { parts: [{ text: systemPrompt }] },
-        contents 
-      })
+      body: JSON.stringify({ contents })
     });
 
     const data = await response.json();
