@@ -9,7 +9,7 @@ export default function Paywall({ type, character, onClose, onPurchase }) {
   return (
     <motion.div 
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      style={{ position: 'fixed', inset: 0, zIndex: 100, background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyCenter: 'center', padding: '20px' }}
+      style={{ position: 'fixed', inset: 0, zIndex: 100, background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}
     >
       <motion.div 
         initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }}

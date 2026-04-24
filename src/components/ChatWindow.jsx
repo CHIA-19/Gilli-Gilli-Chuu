@@ -63,17 +63,22 @@ export default function ChatWindow({ character, onOpenGame }) {
     setMood(currentMood);
     setIsTyping(true);
     
-    // Call the real AI Provider
-    const aiResponse = await AIProvider.getResponse(
-      character.systemPrompt, 
-      textToSend, 
-      messages.filter(m => m.id !== messages[0].id) // Exclude greeting from history for token efficiency
-    );
+    try {
+      // Call the real AI Provider
+      const aiResponse = await AIProvider.getResponse(
+        character.systemPrompt, 
+        textToSend, 
+        messages.filter(m => m.id !== messages[0].id) // Exclude greeting from history
+      );
 
-    setIsTyping(false);
-    setMessages(prev => [...prev, { role: 'char', text: aiResponse, id: Date.now() }]);
-    speak(aiResponse);
-    AgentSystem.updateMission(character.id, 'chat');
+      setMessages(prev => [...prev, { role: 'char', text: aiResponse, id: Date.now() }]);
+      speak(aiResponse);
+    } catch (error) {
+      console.error("Chat Error:", error);
+    } finally {
+      setIsTyping(false);
+      AgentSystem.updateMission(character.id, 'chat');
+    }
   };
 
   return (

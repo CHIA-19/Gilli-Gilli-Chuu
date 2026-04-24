@@ -25,7 +25,6 @@ export const AIProvider = {
     
     // Prepare history for Gemini (roles: user, model)
     const contents = [
-      { role: 'user', parts: [{ text: `SYSTEM INSTRUCTION: ${systemPrompt}` }] },
       ...history.map(msg => ({
         role: msg.role === 'user' ? 'user' : 'model',
         parts: [{ text: msg.text }]
@@ -36,10 +35,14 @@ export const AIProvider = {
     const response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ contents })
+      body: JSON.stringify({ 
+        system_instruction: { parts: [{ text: systemPrompt }] },
+        contents 
+      })
     });
 
     const data = await response.json();
+    if (data.error) throw new Error(data.error.message);
     return data.candidates?.[0]?.content?.parts?.[0]?.text || "I'm not sure what to say to that!";
   },
 

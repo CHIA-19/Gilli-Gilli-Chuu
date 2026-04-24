@@ -6,7 +6,7 @@ import Paywall from './components/Paywall';
 import { CHARACTERS } from './constants';
 import { AgentSystem } from './lib/AgentSystem';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, PlusCircle, BookOpen } from 'lucide-react';
+import { Clock, PlusCircle, BookOpen, Sparkles } from 'lucide-react';
 
 function App() {
   const [activeChar, setActiveChar] = useState(null);
