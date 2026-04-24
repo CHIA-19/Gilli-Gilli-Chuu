@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CreditCard, X, Sparkles, Clock } from 'lucide-react';
+import { CreditCard, X, Clock } from 'lucide-react';
 import { AgentSystem } from '../lib/AgentSystem';
 
 export default function Paywall({ type, character, onClose, onPurchase }) {
@@ -47,7 +47,7 @@ export default function Paywall({ type, character, onClose, onPurchase }) {
         </div>
 
         <div style={{ marginTop: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: '#f1c40f', fontSize: '0.8rem' }}>
-          <Sparkles size={14} /> <span>Educational content included with every purchase!</span>
+          <span>✨</span> <span>Educational content included with every purchase!</span>
         </div>
       </motion.div>
     </motion.div>

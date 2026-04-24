@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { CHARACTERS, CATEGORIES } from '../constants';
 import { AgentSystem } from '../lib/AgentSystem';
 import { motion } from 'framer-motion';
-import { Lock, Sparkles, BookOpen } from 'lucide-react';
+import { Lock, BookOpen } from 'lucide-react';
 
 export default function Sidebar({ activeId }) {
   const navigate = useNavigate();
@@ -69,7 +69,7 @@ export default function Sidebar({ activeId }) {
                   <div style={{ zIndex: 1 }}>
                     <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', letterSpacing: '1px', color: 'white', display: 'flex', alignItems: 'center', gap: '4px' }}>
                       {char.name}
-                      {char.tier === 'premium' && <Sparkles size={10} color="#f1c40f" />}
+                      {char.tier === 'premium' && <span>✨</span>}
                     </div>
                     <div style={{ fontSize: '0.6rem', color: char.color, display: 'flex', alignItems: 'center', gap: '4px', marginTop: '2px' }}>
                       <BookOpen size={10} /> {char.tier.toUpperCase()}

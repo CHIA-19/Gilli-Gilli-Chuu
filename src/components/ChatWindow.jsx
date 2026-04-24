@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mic, Send, Volume2, Gamepad2, Sparkles } from 'lucide-react';
+import { Mic, Send, Volume2, Gamepad2 } from 'lucide-react';
 import { AIProvider } from '../lib/AIProvider';
 import { AgentSystem } from '../lib/AgentSystem';
 import confetti from 'canvas-confetti';

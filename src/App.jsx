@@ -7,7 +7,7 @@ import Paywall from './components/Paywall';
 import { CHARACTERS } from './constants';
 import { AgentSystem } from './lib/AgentSystem';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, PlusCircle, BookOpen, Sparkles, Home as HomeIcon } from 'lucide-react';
+import { Clock, PlusCircle, BookOpen, Home as HomeIcon } from 'lucide-react';
 
 // --- Shared Layout Component ---
 function Layout({ children, activeChar, hoursBalance, setShowPaywall }) {
@@ -88,7 +88,7 @@ function ChatPage({ setGlobalChar, hoursBalance, setShowPaywall }) {
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       <div style={{ background: char.color + '22', padding: '10px 20px', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '10px' }}>
-        <Sparkles size={16} color={char.color} />
+        <span>✨</span>
         <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'white' }}>MISSION: {char.learningMission}</span>
       </div>
       <ChatWindow character={char} onOpenGame={() => navigate(`/game/${char.id}`)} />
