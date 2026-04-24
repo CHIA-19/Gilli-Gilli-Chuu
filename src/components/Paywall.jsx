@@ -34,15 +34,23 @@ export default function Paywall({ type, character, onClose, onPurchase }) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <button 
             onClick={() => onPurchase(isPremiumChar ? 'unlock' : 'hours')}
-            style={{ background: '#f1c40f', color: '#111', border: 'none', borderRadius: '16px', padding: '16px', fontSize: '1.1rem', fontWeight: 800, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}
+            style={{ background: '#f1c40f', color: '#111', border: 'none', borderRadius: '16px', padding: '16px', fontSize: '1.1rem', fontWeight: 800, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', transition: 'transform 0.2s' }}
+            onMouseOver={(e) => e.target.style.transform = 'scale(1.02)'}
+            onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
           >
-            <CreditCard size={20} /> {isPremiumChar ? 'Unlock for $4.99' : 'Add 5 Hours for $9.99'}
+            <CreditCard size={20} /> {isPremiumChar ? `Unlock ${character.name} ($4.99)` : 'Add 5 Hours ($9.99)'}
           </button>
+          
+          <div style={{ marginTop: '10px', padding: '12px', background: 'rgba(255,255,255,0.05)', borderRadius: '16px', fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', textAlign: 'center' }}>
+            📧 Support & Inquiries:<br/>
+            <strong style={{ color: '#f1c40f' }}>gilligillichuu_official@gmail.com</strong>
+          </div>
+
           <button 
             onClick={onClose}
-            style={{ background: 'rgba(255,255,255,0.05)', color: 'white', border: 'none', borderRadius: '16px', padding: '16px', fontSize: '1rem', cursor: 'pointer' }}
+            style={{ background: 'none', color: 'rgba(255,255,255,0.4)', border: 'none', padding: '8px', fontSize: '0.9rem', cursor: 'pointer' }}
           >
-            Maybe Later
+            Return to Multiverse
           </button>
         </div>
 

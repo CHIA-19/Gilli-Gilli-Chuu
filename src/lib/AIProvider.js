@@ -21,7 +21,7 @@ export const AIProvider = {
   },
 
   async fetchGemini(systemPrompt, userMessage, history, apiKey) {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
     
     // Combine system prompt and history into contents
     const contents = [
